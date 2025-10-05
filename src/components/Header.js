@@ -44,44 +44,44 @@ const Header = () => {
 
   return (
     <>
-      {/* Košík v ľavom hornom rohu */}
-      <div className="fixed top-8 left-8 z-40">
+      <h1 className="text-4xl md:text-5xl font-bold mb-5 drop-shadow-lg">
+        Vitajte v mojej React aplikácii
+      </h1>
+      <p className="text-xl mb-6 opacity-90">
+        Toto je základná React stránka.
+      </p>
+
+      {/* Košík pod nadpisom - mobilne friendly */}
+      <div className="mb-8 flex justify-center">
         <div 
-          className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 min-w-[200px] cursor-pointer hover:bg-white/20 transition-all duration-300"
+          className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-full max-w-md cursor-pointer hover:bg-white/20 transition-all duration-300"
           onClick={openCart}
         >
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-2xl">🛒</span>
-            <span className="text-white font-semibold">Košík</span>
-            <span className="bg-yellow-400 text-black rounded-full px-2 py-1 text-xs font-bold">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <span className="text-3xl">🛒</span>
+            <span className="text-white font-semibold text-lg">Košík</span>
+            <span className="bg-yellow-400 text-black rounded-full px-3 py-1 text-sm font-bold">
               {getTotalItems()}
             </span>
           </div>
-          <div className="text-white/80 text-sm">
-            Celkom: <span className="text-yellow-300 font-bold">{getTotalPrice()}€</span>
+          <div className="text-center text-white/80 text-lg mb-2">
+            Celkom: <span className="text-yellow-300 font-bold text-xl">{getTotalPrice()}€</span>
           </div>
           {cart.length > 0 && (
-            <div className="mt-2 max-h-32 overflow-y-auto">
+            <div className="mt-3 max-h-24 overflow-y-auto bg-white/5 rounded-lg p-2">
               {cart.map((item) => (
-                <div key={item.id} className="text-xs text-white/70 flex justify-between py-1">
+                <div key={item.id} className="text-sm text-white/80 flex justify-between py-1">
                   <span>{item.name}</span>
-                  <span>{item.quantity}x</span>
+                  <span className="text-yellow-300">{item.quantity}x</span>
                 </div>
               ))}
             </div>
           )}
-          <div className="text-xs text-white/60 mt-2 text-center">
-            👆 Kliknite pre detail
+          <div className="text-sm text-white/70 mt-3 text-center">
+            👆 Kliknite pre detail košíka
           </div>
         </div>
       </div>
-
-      <h1 className="text-4xl md:text-5xl font-bold mb-5 drop-shadow-lg">
-        Vitajte v mojej React aplikácii
-      </h1>
-      <p className="text-xl mb-10 opacity-90">
-        Toto je základná React stránka.
-      </p>
       
       {/* Animované produktové karty */}
       <div className="relative overflow-hidden mb-10 h-32">
