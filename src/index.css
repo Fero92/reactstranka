@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Animácia pre posúvanie produktových kariet */
+/* RÝCHLEJŠIA animácia pre posúvanie produktových kariet */
 @keyframes scroll {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-33.33%); /* Posunie presne o jednu tretinu */
   }
 }
 
 .animate-scroll {
-  animation: scroll 20s linear infinite;
+  animation: scroll 8s linear infinite; /* Zrýchlené z 20s na 8s */
 }
 
 /* Skrytie scrollbaru ale zachovanie funkcionality */

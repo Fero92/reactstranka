@@ -45,18 +45,18 @@ const Header = () => {
     setIsCartOpen(false);
   };
 
-  // Automatické posúvanie
+  // Automatické posúvanie - RÝCHLEJŠIE pre mobile
   const startAutoScroll = () => {
     if (scrollRef.current && !isUserInteracting) {
       autoScrollInterval.current = setInterval(() => {
         if (scrollRef.current && !isUserInteracting) {
-          scrollRef.current.scrollLeft += 1;
-          // Reset na začiatok ak sa dostaneme na koniec
-          if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
+          scrollRef.current.scrollLeft += 3; // Zrýchlené z 1px na 3px
+          // PLYNULÝ reset - reset na tretinu namiesto polovice
+          if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 3) {
             scrollRef.current.scrollLeft = 0;
           }
         }
-      }, 20); // Plynulé posúvanie každých 20ms
+      }, 15); // Zrýchlené z 20ms na 15ms
     }
   };
 
@@ -209,13 +209,13 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Desktop - animované ako predtým */}
+        {/* Desktop - RÝCHLEJŠIA a PLYNULEJŠIA animácia */}
         <div className="hidden lg:block relative overflow-hidden h-32">
           <div className="absolute inset-0 flex animate-scroll">
             {/* Prvá sada kariet */}
             {products.map((product) => (
               <div
-                key={`first-${product.id}`}
+                key={`desktop-first-${product.id}`}
                 className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[190px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
                 onClick={() => addToCart(product)}
               >
@@ -225,11 +225,24 @@ const Header = () => {
                 <div className="text-xs text-white/60 mt-1">Click to add</div>
               </div>
             ))}
-            {/* Druhá sada kariet pre plynulú animáciu */}
+            {/* Druhá sada kariet */}
             {products.map((product) => (
               <div
-                key={`second-${product.id}`}
-                className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[180px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                key={`desktop-second-${product.id}`}
+                className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[190px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => addToCart(product)}
+              >
+                <div className="text-2xl mb-1">{product.icon}</div>
+                <h3 className="text-white font-semibold text-sm">{product.name}</h3>
+                <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                <div className="text-xs text-white/60 mt-1">Click to add</div>
+              </div>
+            ))}
+            {/* Tretia sada pre BEZPROBLÉMOVÝ nekonečný scroll */}
+            {products.map((product) => (
+              <div
+                key={`desktop-third-${product.id}`}
+                className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[190px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
                 onClick={() => addToCart(product)}
               >
                 <div className="text-2xl mb-1">{product.icon}</div>
