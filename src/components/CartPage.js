@@ -44,23 +44,25 @@ const CartPage = ({ cart, onClose, getTotalPrice }) => {
               {/* Zoznam produktov */}
               <div className="space-y-4 mb-6">
                 {cart.map((item) => (
-                  <div key={item.id} className="bg-white/10 rounded-lg p-4 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                  <div key={item.id} className="bg-white/10 rounded-lg p-4">
+                    <div className="flex items-center gap-4 mb-3">
                       <div className="text-3xl">{item.icon}</div>
-                      <div>
-                        <h3 className="text-white font-semibold">{item.name}</h3>
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold text-lg">{item.name}</h3>
                         <p className="text-white/70">Cena za kus: {item.price}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-1">
-                        <span className="text-white">Množstvo:</span>
-                        <span className="text-yellow-300 font-bold text-lg">{item.quantity}</span>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="text-center">
+                        <div className="text-yellow-300 font-bold text-2xl">{item.quantity}</div>
+                        <div className="text-white/60 text-sm">x</div>
                       </div>
                       <div className="text-right">
-                        <p className="text-yellow-300 font-bold text-lg">
+                        <div className="text-yellow-300 font-bold text-xl">
                           {item.priceValue * item.quantity}€
-                        </p>
+                        </div>
+                        <div className="text-white/60 text-sm">celkom</div>
                       </div>
                     </div>
                   </div>

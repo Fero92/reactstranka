@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/reactstranka/static/css/main.887c841b.css",
-    "main.js": "/reactstranka/static/js/main.d277579a.js",
+    "main.css": "/reactstranka/static/css/main.64793d2d.css",
+    "main.js": "/reactstranka/static/js/main.9929e94f.js",
     "index.html": "/reactstranka/index.html",
-    "main.887c841b.css.map": "/reactstranka/static/css/main.887c841b.css.map",
-    "main.d277579a.js.map": "/reactstranka/static/js/main.d277579a.js.map"
+    "main.64793d2d.css.map": "/reactstranka/static/css/main.64793d2d.css.map",
+    "main.9929e94f.js.map": "/reactstranka/static/js/main.9929e94f.js.map"
   },
   "entrypoints": [
-    "static/css/main.887c841b.css",
-    "static/js/main.d277579a.js"
+    "static/css/main.64793d2d.css",
+    "static/js/main.9929e94f.js"
   ]
 }
