@@ -19,14 +19,14 @@
   perspective: 1000px;
 }
 
-/* Skrytie scrollbaru ale zachovanie funkcionality + ULTRA SMOOTH */
+/* Skrytie scrollbaru + INSTANT scroll bez lag */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  /* PERFORMANCE optimalizácia pre mobile */
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  transform: translateZ(0);
+  /* ZERO LAG optimalizácia */
+  -webkit-overflow-scrolling: auto;
+  scroll-behavior: auto !important;
+  transform: translate3d(0, 0, 0);
   will-change: scroll-position;
   backface-visibility: hidden;
 }

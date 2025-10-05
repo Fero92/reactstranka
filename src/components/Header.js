@@ -45,13 +45,14 @@ const Header = () => {
     setIsCartOpen(false);
   };
 
-  // PLYNULÉ posúvanie pomocou requestAnimationFrame - ŽIADNE TRHANIE!
+  // RÝCHLE a STABILNÉ posúvanie - requestAnimationFrame bez sekania
   const startAutoScroll = () => {
     if (!scrollRef.current || isUserInteracting) return;
     
     const scroll = () => {
       if (scrollRef.current && !isUserInteracting) {
-        scrollRef.current.scrollLeft += 1; // Plynulé po 1px každý frame
+        // RÝCHLEJŠIE - 2px každý frame = plynulé a rýchle
+        scrollRef.current.scrollLeft += 2;
         
         // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
         const maxScroll = scrollRef.current.scrollWidth / 5; // Jedna piata (jedna sada)
@@ -59,11 +60,12 @@ const Header = () => {
           scrollRef.current.scrollLeft = 0;
         }
         
-        // Pokračuj v scrollovaní
+        // POKRAČUJ STÁLE bez zastávky
         animationFrameId.current = requestAnimationFrame(scroll);
       }
     };
     
+    // SPUSTI hneď
     animationFrameId.current = requestAnimationFrame(scroll);
   };
 
@@ -157,17 +159,12 @@ const Header = () => {
         <div className="lg:hidden">
           <div 
             ref={scrollRef}
-            className="overflow-x-scroll scrollbar-hide px-2 scroll-smooth"
+            className="overflow-x-scroll scrollbar-hide px-2"
+            style={{ scrollBehavior: 'auto' }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onMouseDown={handleTouchStart}
             onMouseUp={handleTouchEnd}
-            onScroll={() => {
-              if (!isUserInteracting) {
-                setIsUserInteracting(true);
-                setTimeout(() => setIsUserInteracting(false), 2000);
-              }
-            }}
           >
             <div className="flex gap-3 pb-4 w-max">
               {/* Prvá sada produktov */}
