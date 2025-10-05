@@ -3,34 +3,44 @@
 <head>
 <meta charset="utf-8"/>
 <link rel="icon" href="/reactstranka/favicon.ico"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="theme-color" content="#000000"/>
-<meta name="description" content="⚡ Mobile FASTER - 4px/8ms = Smooth & Fast scroll matching notebook!"/>
+<meta name="description" content="🚀 60FPS Mobile Scroll - Ultra Smooth & Fast - No more lag!"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
-<title>⚡ Mobile FAST | Notebook Speed Match!</title>
-<script defer="defer" src="/reactstranka/static/js/main.5420344b.js"></script>
-<link href="/reactstranka/static/css/main.fa03aefe.css" rel="stylesheet">
+<title>🚀 60FPS Smooth Mobile | No Lag!</title>
+<script defer="defer" src="/reactstranka/static/js/main.ade515f4.js"></script>
+<link href="/reactstranka/static/css/main.ccbc9dfa.css" rel="stylesheet">
 <style>
+  /* ULTIMATE PERFORMANCE optimization for mobile */
   * {
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
-  body {
+  
+  html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .animate-scroll {
+  
+  /* Hardware acceleration for all animations */
+  .animate-scroll, .scroll-smooth {
     transform: translateZ(0);
-    will-change: transform;
+    will-change: transform, scroll-position;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
   }
-  .scroll-smooth {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+  
+  /* Force GPU acceleration */
+  #root {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 </style>
 </head>

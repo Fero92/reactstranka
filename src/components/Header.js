@@ -45,20 +45,20 @@ const Header = () => {
     setIsCartOpen(false);
   };
 
-  // Automatické posúvanie - ROVNAKÁ RÝCHLOSŤ AKO NOTEBOOK (20s animácia)
+  // ULTRA RÝCHLE a PLYNULÉ posúvanie pre mobile
   const startAutoScroll = () => {
     if (scrollRef.current && !isUserInteracting) {
       autoScrollInterval.current = setInterval(() => {
         if (scrollRef.current && !isUserInteracting) {
-          scrollRef.current.scrollLeft += 4; // RÝCHLEJŠIE - 4px namiesto 2px
+          scrollRef.current.scrollLeft += 3; // SUPER RÝCHLE - 3px je optimum
           
           // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
-          const maxScroll = scrollRef.current.scrollWidth / 3; // Jedna tretina (jedna sada produktov)
+          const maxScroll = scrollRef.current.scrollWidth / 5; // Jedna piata (jedna sada)
           if (scrollRef.current.scrollLeft >= maxScroll) {
             scrollRef.current.scrollLeft = 0;
           }
         }
-      }, 8); // RÝCHLEJŠÍ interval - 8ms namiesto 10ms = plynulejšie a rýchlejšie
+      }, 16); // 16ms = 60fps = SUPER PLYNULÉ ako video
     }
   };
 

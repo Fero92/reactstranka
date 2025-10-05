@@ -19,14 +19,20 @@
   perspective: 1000px;
 }
 
-/* Skrytie scrollbaru ale zachovanie funkcionality */
+/* Skrytie scrollbaru ale zachovanie funkcionality + ULTRA SMOOTH */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* PERFORMANCE optimalizácia pre mobile */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  transform: translateZ(0);
+  will-change: scroll-position;
+  backface-visibility: hidden;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
+  display: none;
 }
 
 /* Nulové okraje pre mobilné zariadenia */
