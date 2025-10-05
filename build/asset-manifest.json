@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/reactstranka/static/css/main.5dc30090.css",
+    "main.js": "/reactstranka/static/js/main.42e3dbdf.js",
+    "index.html": "/reactstranka/index.html",
+    "main.5dc30090.css.map": "/reactstranka/static/css/main.5dc30090.css.map",
+    "main.42e3dbdf.js.map": "/reactstranka/static/js/main.42e3dbdf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5dc30090.css",
+    "static/js/main.42e3dbdf.js"
+  ]
+}
