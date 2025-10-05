@@ -83,35 +83,61 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Animované produktové karty */}
-      <div className="relative overflow-hidden mb-10 h-32">
-        <div className="absolute inset-0 flex animate-scroll">
-          {/* Prvá sada kariet */}
-          {products.map((product) => (
-            <div
-              key={`first-${product.id}`}
-              className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[190px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
-              onClick={() => addToCart(product)}
-            >
-              <div className="text-2xl mb-1">{product.icon}</div>
-              <h3 className="text-white font-semibold text-sm">{product.name}</h3>
-              <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-              <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
+      {/* Produktové karty - posuvateľné na mobile, animované na desktop */}
+      <div className="mb-10">
+        {/* Mobile - horizontálne posuvateľné */}
+        <div className="md:hidden">
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 px-4 pb-4" style={{width: 'max-content'}}>
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 min-w-[180px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                  onClick={() => addToCart(product)}
+                >
+                  <div className="text-2xl mb-1">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-1">👆 Kliknite pre pridanie</div>
+                </div>
+              ))}
             </div>
-          ))}
-          {/* Druhá sada kariet pre plynulú animáciu */}
-          {products.map((product) => (
-            <div
-              key={`second-${product.id}`}
-              className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[180px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
-              onClick={() => addToCart(product)}
-            >
-              <div className="text-2xl mb-1">{product.icon}</div>
-              <h3 className="text-white font-semibold text-sm">{product.name}</h3>
-              <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-              <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
-            </div>
-          ))}
+          </div>
+          <div className="text-center text-white/60 text-sm mt-2">
+            👈 Posúvajte prstom dolava a doprava 👉
+          </div>
+        </div>
+
+        {/* Desktop - animované ako predtým */}
+        <div className="hidden md:block relative overflow-hidden h-32">
+          <div className="absolute inset-0 flex animate-scroll">
+            {/* Prvá sada kariet */}
+            {products.map((product) => (
+              <div
+                key={`first-${product.id}`}
+                className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[190px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => addToCart(product)}
+              >
+                <div className="text-2xl mb-1">{product.icon}</div>
+                <h3 className="text-white font-semibold text-sm">{product.name}</h3>
+                <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
+              </div>
+            ))}
+            {/* Druhá sada kariet pre plynulú animáciu */}
+            {products.map((product) => (
+              <div
+                key={`second-${product.id}`}
+                className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mx-2 min-w-[180px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => addToCart(product)}
+              >
+                <div className="text-2xl mb-1">{product.icon}</div>
+                <h3 className="text-white font-semibold text-sm">{product.name}</h3>
+                <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
