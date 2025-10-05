@@ -52,7 +52,7 @@ const Header = () => {
     const scroll = () => {
       if (scrollRef.current && !isUserInteracting) {
         // RÝCHLEJŠIE - 2px každý frame = plynulé a rýchle
-        scrollRef.current.scrollLeft += 4;
+        scrollRef.current.scrollLeft += 3;
         
         // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
         const maxScroll = scrollRef.current.scrollWidth / 5; // Jedna piata (jedna sada)
