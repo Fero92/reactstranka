@@ -119,7 +119,7 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-8 pt-6 text-center">
           <p className="text-white/60 text-sm">
             © 2025 Moja React Aplikácia. Všetky práva vyhradené. 
-            <span className="ml-2">Made with ❤️ in Slovakia</span>
+            <span className="ml-2">Made with AI v Trenčíne</span>
           </p>
         </div>
       </div>
