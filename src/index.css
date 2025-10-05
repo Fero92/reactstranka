@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Nulové okraje pre mobilné zariadenia */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
 /* Animácia pre posúvanie produktových kariet */
 @keyframes scroll {
   0% {

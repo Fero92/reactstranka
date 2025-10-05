@@ -52,7 +52,7 @@ const Header = () => {
       </p>
 
       {/* Košík pod nadpisom - mobilne friendly */}
-      <div className="mb-8 flex justify-center">
+      <div className="mb-8 flex justify-center px-2">
         <div 
           className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-full max-w-md cursor-pointer hover:bg-white/20 transition-all duration-300"
           onClick={openCart}

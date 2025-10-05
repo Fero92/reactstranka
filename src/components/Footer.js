@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-white/10 p-8">
+    <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-white/10 p-2 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Nadpis sekcie */}
         <div className="text-center mb-8">
