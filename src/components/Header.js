@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CartPage from './CartPage';
 
 const Header = () => {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const scrollRef = useRef(null);
+  const autoScrollInterval = useRef(null);
   
   const products = [
     { id: 1, name: 'MacBook Pro', price: '2499€', priceValue: 2499, icon: '💻' },
@@ -41,6 +44,64 @@ const Header = () => {
   const closeCart = () => {
     setIsCartOpen(false);
   };
+
+  // Automatické posúvanie
+  const startAutoScroll = () => {
+    if (scrollRef.current && !isUserInteracting) {
+      autoScrollInterval.current = setInterval(() => {
+        if (scrollRef.current && !isUserInteracting) {
+          scrollRef.current.scrollLeft += 1;
+          // Reset na začiatok ak sa dostaneme na koniec
+          if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
+            scrollRef.current.scrollLeft = 0;
+          }
+        }
+      }, 20); // Plynulé posúvanie každých 20ms
+    }
+  };
+
+  const stopAutoScroll = () => {
+    if (autoScrollInterval.current) {
+      clearInterval(autoScrollInterval.current);
+      autoScrollInterval.current = null;
+    }
+  };
+
+  // User interaction handlers
+  const handleTouchStart = () => {
+    setIsUserInteracting(true);
+    stopAutoScroll();
+  };
+
+  const handleTouchEnd = () => {
+    setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 3000); // Po 3 sekundách znovu spusti autoscroll
+  };
+
+  // Spusti autoscroll pri načítaní
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startAutoScroll();
+    }, 1000); // Začne po 1 sekunde
+
+    return () => {
+      clearTimeout(timer);
+      stopAutoScroll();
+    };
+  }, []);
+
+  // Reštart autoscroll keď user prestane interagovať
+  useEffect(() => {
+    if (!isUserInteracting) {
+      const timer = setTimeout(() => {
+        startAutoScroll();
+      }, 500);
+      return () => clearTimeout(timer);
+    } else {
+      stopAutoScroll();
+    }
+  }, [isUserInteracting]);
 
   return (
     <>
@@ -85,13 +146,53 @@ const Header = () => {
       
       {/* Produktové karty - posuvateľné na mobile, animované na desktop */}
       <div className="mb-10">
-        {/* Mobile/Tablet - horizontálne posuvateľné */}
+        {/* Mobile/Tablet - AUTO-SCROLL + manuálne posúvanie */}
         <div className="lg:hidden">
-          <div className="overflow-x-scroll scrollbar-hide px-2">
+          <div 
+            ref={scrollRef}
+            className="overflow-x-scroll scrollbar-hide px-2 scroll-smooth"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleTouchStart}
+            onMouseUp={handleTouchEnd}
+            onScroll={() => {
+              if (!isUserInteracting) {
+                setIsUserInteracting(true);
+                setTimeout(() => setIsUserInteracting(false), 2000);
+              }
+            }}
+          >
             <div className="flex gap-3 pb-4 w-max">
+              {/* Prvá sada produktov */}
               {products.map((product) => (
                 <div
-                  key={product.id}
+                  key={`mobile-first-${product.id}`}
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
+                  onClick={() => addToCart(product)}
+                >
+                  <div className="text-2xl mb-2">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg mt-1">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
+                </div>
+              ))}
+              {/* Druhá sada pre plynulý loop */}
+              {products.map((product) => (
+                <div
+                  key={`mobile-second-${product.id}`}
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
+                  onClick={() => addToCart(product)}
+                >
+                  <div className="text-2xl mb-2">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg mt-1">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
+                </div>
+              ))}
+              {/* Tretia sada pre ešte plynulejší efekt */}
+              {products.map((product) => (
+                <div
+                  key={`mobile-third-${product.id}`}
                   className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
                   onClick={() => addToCart(product)}
                 >
@@ -104,7 +205,7 @@ const Header = () => {
             </div>
           </div>
           <div className="text-center text-white/60 text-sm mt-1 px-4">
-            👈 Swipe left and right to browse products 👉
+            🚀 Auto-scrolling • Touch to control manually • 👆 Tap products to add to cart
           </div>
         </div>
 
