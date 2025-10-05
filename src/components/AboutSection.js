@@ -7,6 +7,11 @@ const AboutSection = () => {
     setClickCount(clickCount + 1);
   };
 
+  const resetCount = (e) => {
+    e.stopPropagation(); // Zabráni zvýšeniu počítadla pri kliknutí na tlačidlo
+    setClickCount(0);
+  };
+
   return (
     <section 
       className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/20 transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
@@ -26,6 +31,12 @@ const AboutSection = () => {
         <p className="text-sm opacity-80 mt-1">
           Kliknite na túto sekciu pre zvýšenie počítadla!
         </p>
+        <button
+          onClick={resetCount}
+          className="mt-3 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95"
+        >
+          🔄 Nulovať počítadlo
+        </button>
       </div>
     </section>
   );
