@@ -2,18 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* RÝCHLEJŠIA animácia pre posúvanie produktových kariet */
+/* SUPER RÝCHLA nekonečná animácia - rovnaká rýchlosť ako mobile! */
 @keyframes scroll {
   0% {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-33.33%); /* Posunie presne o jednu tretinu */
+    transform: translateX(-33.33%); /* Presne jedna tretina pre seamless loop */
   }
 }
 
 .animate-scroll {
-  animation: scroll 8s linear infinite; /* Zrýchlené z 20s na 8s */
+  animation: scroll 6s linear infinite; /* RÝCHLEJŠIE - 6s namiesto 8s */
+  animation-play-state: running;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Skrytie scrollbaru ale zachovanie funkcionality */

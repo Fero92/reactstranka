@@ -45,18 +45,20 @@ const Header = () => {
     setIsCartOpen(false);
   };
 
-  // Automatické posúvanie - RÝCHLEJŠIE pre mobile
+  // Automatické posúvanie - ROVNAKÁ RÝCHLOSŤ AKO NOTEBOOK
   const startAutoScroll = () => {
     if (scrollRef.current && !isUserInteracting) {
       autoScrollInterval.current = setInterval(() => {
         if (scrollRef.current && !isUserInteracting) {
-          scrollRef.current.scrollLeft += 3; // Zrýchlené z 1px na 3px
-          // PLYNULÝ reset - reset na tretinu namiesto polovice
-          if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 3) {
+          scrollRef.current.scrollLeft += 2; // Optimálna rýchlosť
+          
+          // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
+          const maxScroll = scrollRef.current.scrollWidth / 3; // Jedna tretina (jedna sada produktov)
+          if (scrollRef.current.scrollLeft >= maxScroll) {
             scrollRef.current.scrollLeft = 0;
           }
         }
-      }, 15); // Zrýchlené z 20ms na 15ms
+      }, 10); // Rýchlejší interval = plynulejšie posúvanie
     }
   };
 
@@ -189,7 +191,7 @@ const Header = () => {
                   <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
                 </div>
               ))}
-              {/* Tretia sada pre ešte plynulejší efekt */}
+              {/* Tretia sada */}
               {products.map((product) => (
                 <div
                   key={`mobile-third-${product.id}`}
@@ -202,10 +204,36 @@ const Header = () => {
                   <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
                 </div>
               ))}
+              {/* Štvrtá sada pre EXTRA plynulý nekonečný efekt */}
+              {products.map((product) => (
+                <div
+                  key={`mobile-fourth-${product.id}`}
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
+                  onClick={() => addToCart(product)}
+                >
+                  <div className="text-2xl mb-2">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg mt-1">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
+                </div>
+              ))}
+              {/* Piata sada pre PERFEKTNÝ seamless loop */}
+              {products.map((product) => (
+                <div
+                  key={`mobile-fifth-${product.id}`}
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
+                  onClick={() => addToCart(product)}
+                >
+                  <div className="text-2xl mb-2">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg mt-1">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
+                </div>
+              ))}
             </div>
           </div>
           <div className="text-center text-white/60 text-sm mt-1 px-4">
-            🚀 Auto-scrolling • Touch to control manually • 👆 Tap products to add to cart
+            ♾️ Infinite auto-scroll • Touch to take control • 👆 Tap to add to cart
           </div>
         </div>
 
