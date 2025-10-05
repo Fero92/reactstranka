@@ -5,15 +5,15 @@
 <link rel="icon" href="/reactstranka/favicon.ico"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="theme-color" content="#000000"/>
-<meta name="description" content="🚀 60FPS Mobile Scroll - Ultra Smooth & Fast - No more lag!"/>
+<meta name="description" content="✨ requestAnimationFrame - Buttery Smooth Mobile Scroll - Zero Lag!"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
-<title>🚀 60FPS Smooth Mobile | No Lag!</title>
-<script defer="defer" src="/reactstranka/static/js/main.ade515f4.js"></script>
+<title>✨ Butter Smooth | requestAnimationFrame</title>
+<script defer="defer" src="/reactstranka/static/js/main.2091a1e2.js"></script>
 <link href="/reactstranka/static/css/main.ccbc9dfa.css" rel="stylesheet">
 <style>
-  /* ULTIMATE PERFORMANCE optimization for mobile */
+  /* ULTIMATE SMOOTH - requestAnimationFrame optimization */
   * {
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
@@ -27,20 +27,23 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Hardware acceleration for all animations */
+  /* Hardware acceleration + smooth rendering */
   .animate-scroll, .scroll-smooth {
-    transform: translateZ(0);
-    will-change: transform, scroll-position;
+    transform: translate3d(0, 0, 0);
+    will-change: scroll-position;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
   }
   
-  /* Force GPU acceleration */
+  /* Force GPU rendering on entire app */
   #root {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Remove any scroll jank */
+  .scrollbar-hide {
+    scroll-behavior: auto !important;
   }
 </style>
 </head>

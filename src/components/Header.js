@@ -6,7 +6,7 @@ const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserInteracting, setIsUserInteracting] = useState(false);
   const scrollRef = useRef(null);
-  const autoScrollInterval = useRef(null);
+  const animationFrameId = useRef(null);
   
   const products = [
     { id: 1, name: 'MacBook Pro', price: '2499€', priceValue: 2499, icon: '💻' },
@@ -45,27 +45,32 @@ const Header = () => {
     setIsCartOpen(false);
   };
 
-  // ULTRA RÝCHLE a PLYNULÉ posúvanie pre mobile
+  // PLYNULÉ posúvanie pomocou requestAnimationFrame - ŽIADNE TRHANIE!
   const startAutoScroll = () => {
-    if (scrollRef.current && !isUserInteracting) {
-      autoScrollInterval.current = setInterval(() => {
-        if (scrollRef.current && !isUserInteracting) {
-          scrollRef.current.scrollLeft += 3; // SUPER RÝCHLE - 3px je optimum
-          
-          // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
-          const maxScroll = scrollRef.current.scrollWidth / 5; // Jedna piata (jedna sada)
-          if (scrollRef.current.scrollLeft >= maxScroll) {
-            scrollRef.current.scrollLeft = 0;
-          }
+    if (!scrollRef.current || isUserInteracting) return;
+    
+    const scroll = () => {
+      if (scrollRef.current && !isUserInteracting) {
+        scrollRef.current.scrollLeft += 1; // Plynulé po 1px každý frame
+        
+        // NEKONEČNÝ LOOP - plynulý reset bez viditeľného skoku
+        const maxScroll = scrollRef.current.scrollWidth / 5; // Jedna piata (jedna sada)
+        if (scrollRef.current.scrollLeft >= maxScroll) {
+          scrollRef.current.scrollLeft = 0;
         }
-      }, 16); // 16ms = 60fps = SUPER PLYNULÉ ako video
-    }
+        
+        // Pokračuj v scrollovaní
+        animationFrameId.current = requestAnimationFrame(scroll);
+      }
+    };
+    
+    animationFrameId.current = requestAnimationFrame(scroll);
   };
 
   const stopAutoScroll = () => {
-    if (autoScrollInterval.current) {
-      clearInterval(autoScrollInterval.current);
-      autoScrollInterval.current = null;
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
     }
   };
 
