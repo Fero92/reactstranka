@@ -5,7 +5,7 @@ import ContactSection from './ContactSection';
 
 const ContentGrid = () => {
   return (
-    <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2 md:p-5">
+    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 md:px-6 lg:px-8">
       <AboutSection />
       <FeaturesSection />
       <ContactSection />

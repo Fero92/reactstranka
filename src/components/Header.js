@@ -85,31 +85,31 @@ const Header = () => {
       
       {/* Produktové karty - posuvateľné na mobile, animované na desktop */}
       <div className="mb-10">
-        {/* Mobile - horizontálne posuvateľné */}
-        <div className="md:hidden">
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-4 px-4 pb-4" style={{width: 'max-content'}}>
+        {/* Mobile/Tablet - horizontálne posuvateľné */}
+        <div className="lg:hidden">
+          <div className="overflow-x-scroll scrollbar-hide px-2">
+            <div className="flex gap-3 pb-4 w-max">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 min-w-[180px] hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                  className="flex-shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 w-[170px] hover:bg-white/20 transition-all duration-300 cursor-pointer active:scale-95"
                   onClick={() => addToCart(product)}
                 >
-                  <div className="text-2xl mb-1">{product.icon}</div>
-                  <h3 className="text-white font-semibold text-sm">{product.name}</h3>
-                  <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-                  <div className="text-xs text-white/60 mt-1">👆 Kliknite pre pridanie</div>
+                  <div className="text-2xl mb-2">{product.icon}</div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg mt-1">{product.price}</p>
+                  <div className="text-xs text-white/60 mt-2">👆 Tap to add</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="text-center text-white/60 text-sm mt-2">
-            👈 Posúvajte prstom dolava a doprava 👉
+          <div className="text-center text-white/60 text-sm mt-1 px-4">
+            👈 Swipe left and right to browse products 👉
           </div>
         </div>
 
         {/* Desktop - animované ako predtým */}
-        <div className="hidden md:block relative overflow-hidden h-32">
+        <div className="hidden lg:block relative overflow-hidden h-32">
           <div className="absolute inset-0 flex animate-scroll">
             {/* Prvá sada kariet */}
             {products.map((product) => (
@@ -121,7 +121,7 @@ const Header = () => {
                 <div className="text-2xl mb-1">{product.icon}</div>
                 <h3 className="text-white font-semibold text-sm">{product.name}</h3>
                 <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-                <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
+                <div className="text-xs text-white/60 mt-1">Click to add</div>
               </div>
             ))}
             {/* Druhá sada kariet pre plynulú animáciu */}
@@ -134,7 +134,7 @@ const Header = () => {
                 <div className="text-2xl mb-1">{product.icon}</div>
                 <h3 className="text-white font-semibold text-sm">{product.name}</h3>
                 <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-                <div className="text-xs text-white/60 mt-1">Kliknite pre pridanie</div>
+                <div className="text-xs text-white/60 mt-1">Click to add</div>
               </div>
             ))}
           </div>

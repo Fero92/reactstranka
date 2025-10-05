@@ -1,4 +1,7 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Animácia pre posúvanie produktových kariet */
 @keyframes scroll {
   0% {
