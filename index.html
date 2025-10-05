@@ -5,12 +5,12 @@
 <link rel="icon" href="/reactstranka/favicon.ico"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
 <meta name="theme-color" content="#000000"/>
-<meta name="description" content="♾️ Custom Speed - Desktop 20s scroll animation"/>
+<meta name="description" content="⚡ Mobile FASTER - 4px/8ms = Smooth & Fast scroll matching notebook!"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
-<title>React App | Custom 20s Speed</title>
-<script defer="defer" src="/reactstranka/static/js/main.2b5ff4a9.js"></script>
+<title>⚡ Mobile FAST | Notebook Speed Match!</title>
+<script defer="defer" src="/reactstranka/static/js/main.5420344b.js"></script>
 <link href="/reactstranka/static/css/main.fa03aefe.css" rel="stylesheet">
 <style>
   * {
@@ -21,10 +21,16 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   .animate-scroll {
     transform: translateZ(0);
     will-change: transform;
+    backface-visibility: hidden;
+  }
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 </style>
 </head>
